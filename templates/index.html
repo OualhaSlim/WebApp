@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+    <head>
+
+<!-- //medium.com/jeremy-gottfrieds-tech-blog/javascript-tutorial-record-audio-and-encode-it-to-mp3-2eedcd466e78 -->
+        <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
+        <link  rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+    </head>
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
+        <div class="container">
+             <div class="jumbotron" style="background-color: steelblue ;background-size: contain">
+                <form method="post" action = "" id="upload-file" enctype="multipart/form-data">
+
+                        <div class="container">
+                        <div class="jumbotron" style="background-color: gold">
+                            <h1>Choose your audio type</h1>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="instrument" name="classifier" value="instrument" class="custom-control-input">
+                                <label for="instrument" class="custom-control-label">instrument</label>
+                            </div>
+
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="environmental" name="classifier" value="environmental" class="custom-control-input" checked>
+                                <label for="environmental" class="custom-control-label">environemental sound</label>
+                            </div>
+                        </div>
+                        </div>
+
+                    <br>
+                    <input type="file"  name="file" id="audioUpload" accept="audio/*">
+                    <br>
+                    <button type="submit" class="btn btn-primary btn-lg " id="btn-predict">Predict!</button>
+
+                </form>
+             </div>
+        </div>
+
+ <div class="loader" style="display:none;"></div>
+
+    <h3 id="result">
+        <span> </span>
+    </h3>
+
+
+{% endblock %}
